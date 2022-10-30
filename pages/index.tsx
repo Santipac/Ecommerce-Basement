@@ -1,10 +1,10 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { Banner } from '../components/Banner';
-import { Carousel } from '../components/Carousel';
-import { Footer } from '../components/Footer';
-import { Header } from '../components/Header';
-import { Products } from '../components/Products';
+import { ProductsSection } from '../components/products/ProductsSection';
+import { Carousel } from '../components/ui/Carousel';
+import { Header } from '../components/ui/Header';
+import { Banner } from '../components/views/Banner';
+import { Footer } from '../components/views/Footer';
 
 const Home: NextPage = () => {
   return (
@@ -17,7 +17,7 @@ const Home: NextPage = () => {
       <Header />
       <Banner />
       <Carousel />
-      <Products />
+      <ProductsSection />
       <Footer />
     </div>
   );

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import BannerImage from '../public/header.svg';
+import BannerImage from '../../public/header.svg';
 export const Banner = () => {
   return (
     <div className="min-h p-8 mt-8">
