@@ -6,6 +6,20 @@ module.exports = {
   ],
   theme: {
     extend: {
+      gridTemplateRows: {
+        12: 'repeat(12, minmax(0, 1fr))',
+      },
+      gridRowStart: {
+        11: '11',
+        12: '12',
+        13: '13',
+      },
+      gridRowEnd: {
+        11: '11',
+        12: '12',
+        13: '13',
+        8: '8',
+      },
       animation: {
         marquee: 'marquee 45s linear infinite',
         marquee2: 'marquee2 25s linear infinite',

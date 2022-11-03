@@ -1,83 +1,62 @@
 import Image from 'next/image';
-import React, { FC, useState } from 'react';
+import { FC } from 'react';
 import YourCart from '../../public/YourCart.svg';
-import remera from '../../public/products/shirt.png';
-
+import Checkout from '../../public/checkout.svg';
+import Hoodie from '../../public/products/hoodie.png';
 interface Props {
   isOpen: boolean;
-  onOpen: () => void;
+  handleCart: () => void;
 }
 
-export const CartModal: FC<Props> = ({ isOpen, onOpen }) => {
-  const [counter, setCounter] = useState<number>(1);
+export const CartModal: FC<Props> = ({ handleCart, isOpen }) => {
   return (
     <div
       className={
         isOpen
-          ? `absolute top-0 right-0 h-[40rem] w-[45rem] bg-black border-l-2 border-b-2 border-white grid auto-rows-min z-30 gap-4 p-4`
-          : `hidden`
+          ? 'fixed top-0 left-0 h-screen w-full bg-black p-4 z-10 grid grid-cols-12 grid-rows-12'
+          : 'hidden'
       }
     >
-      <div className="flex w-full min-h-min items-start justify-end pr-4">
-        <button
-          onClick={() => onOpen()}
-          className="text-white text-4xl font-semibold"
-        >
-          → Close
-        </button>
+      <button
+        className="text-2xl text-white col-start-10 col-end-13 font-semibold text-end"
+        onClick={() => handleCart()}
+      >
+        CLOSE
+      </button>
+      <div className=" row-start-2 row-end-4 col-start-1 col-end-13 pt-3">
+        <Image src={YourCart} alt="Your Cart" className="w-full" />
       </div>
-      <div className="w-full text-center p-4">
-        <Image
-          src={YourCart}
-          alt="Your Cart Image"
-          className="w-full min-h-min"
-        />
-      </div>
-      <div className="grid grid-cols-10 border border-white w-full p-4">
-        <div className=" bg-gradient-to-b from-black to-zinc-800 col-span-4 flex justify-center">
+      <div className="product-wrapper row-start-3 row-end-11 col-start-1 col-end-13 py-4 px-2 grid grid-rows-3 gap-4">
+        <div className="border-white border-2 w-full h-full grid grid-cols-12 p-2">
           <Image
-            src={remera}
-            height={150}
-            width={150}
-            alt="Product Cart"
-            className="object-cover"
+            src={Hoodie}
+            alt="Cart Product"
+            className="col-start-1 col-end-4 bg-gradient-to-b from-black to-zinc-800"
           />
-        </div>
-        <div className="col-span-6 pl-4">
-          <h2 className="text-4xl text-white font-bold">Black t-shirt</h2>
-          <h2 className="text-xl text-gray-400 font-bold">
-            Unisex Basic Softstyle T-Shirt
-          </h2>
-          <div className="pt-16 flex items-center">
-            <h3 className="pr-4 text-white font-bold text-2xl">Quantity:</h3>
-            <div className="flex items-center  bg-black text-white border border-white rounded-full space-x-2">
-              <button
-                className="px-2 text-center"
-                onClick={() => setCounter(counter - 1)}
-              >
-                <p className="text-3xl">-</p>
-              </button>
-              <p className="text-2xl">{counter}</p>
-              <button
-                className="px-2 text-center "
-                onClick={() => setCounter(counter + 1)}
-              >
-                <p className="text-3xl">+</p>
-              </button>
-            </div>
-          </div>
-          <div className="w-full flex justify-between items-end mt-4">
-            <div className="flex items-center space-x-2 ">
-              <h2 className="text-white text-2xl font-bold">Size:</h2>
-              <button className="text-white py-1 px-2 text-lg">S</button>
-              <button className="text-white py-1 px-2 text-lg">M</button>
-              <button className="text-white py-1 px-2 text-lg">L</button>
-              <button className="text-white py-1 px-2 text-lg">XL</button>
-            </div>
-            <h2 className="text-white text-3xl font-bold p-0 m-0 text-end">
-              $12.95
+          <div className="flex flex-col col-start-4 col-end-13 pl-2">
+            <h2 className="text-white font-semibold text-xl">Black Hoodie</h2>
+            <h2 className="text-gray-600 font-semibold text-md">
+              Unisex Basic Softstyle Hoodie
             </h2>
+            <div className="flex items-center justify-between h-full mt-6">
+              <div className="flex items-center">
+                <h2 className="text-white text-lg font-semibold">Quantity:</h2>
+                <button className="text-white text-lg px-2">+1</button>
+              </div>
+              <h2 className="text-white font-semibold text-xl">$12.50</h2>
+            </div>
           </div>
+        </div>
+      </div>
+      <div className="row-start-11 row-end-13 col-start-1 col-end-13  grid grid-rows-2">
+        <div className="flex justify-between items-center">
+          <h2 className="text-white text-3xl font-semibold">Total:</h2>
+          <h2 className="text-white text-3xl font-semibold">$0</h2>
+        </div>
+        <div className="w-full h-full flex items-center justify-center border-t-2 border-white ">
+          <button className="mt-2">
+            <Image src={Checkout} alt="checkout button" />
+          </button>
         </div>
       </div>
     </div>

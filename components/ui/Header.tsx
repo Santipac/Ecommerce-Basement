@@ -5,8 +5,9 @@ import { useSelector } from 'react-redux';
 
 import Link from 'next/link';
 import { RootState } from '../../store';
-import { CartModal } from './CartModal';
+
 import { useState } from 'react';
+import { CartModal } from './CartModal';
 export const Header = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -14,10 +15,9 @@ export const Header = () => {
     setIsOpen(!isOpen);
   };
 
-  const cartCount = useSelector((state: RootState) => state.cart.value);
+  const cartCount = useSelector((state: RootState) => state.cart.cartCounter);
   return (
     <header className="h-[10vh] relative top-0 left-0 ">
-      <CartModal isOpen={isOpen} onOpen={handleCart} />
       <div className="py-6 px-8 flex justify-between items-center">
         <Link href="/">
           <h2 className="text-white text-8xl font-medium md:hidden">b.</h2>
@@ -33,9 +33,10 @@ export const Header = () => {
           className="text-white border-2 border-white rounded-full px-10 py-2 text-xl"
           onClick={() => handleCart()}
         >
-          CART ({cartCount})
+          {`CART  ( ${cartCount} ) `}
         </button>
       </div>
+      <CartModal isOpen={isOpen} handleCart={handleCart} />
     </header>
   );
 };

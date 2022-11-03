@@ -6,19 +6,19 @@ export const ProductsMock = [
   {
     id: 1,
     title: 'Black t-shirt',
-    price: '$7.95',
+    price: 7.95,
     image: Tshirt,
   },
   {
     id: 2,
     title: 'Black hoodie',
-    price: '$13',
+    price: 12,
     image: Hoodie,
   },
   {
     id: 3,
     title: 'Black cap',
-    price: '$23',
+    price: 23,
     image: Cap,
   },
 ];

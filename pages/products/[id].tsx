@@ -5,17 +5,10 @@ import { useDispatch } from 'react-redux';
 
 import { ProductsMock } from '../../components/products/mock';
 import { Header } from '../../components/ui/Header';
-import { increment } from '../../store/cart/cartSlice';
-
-interface Product {
-  id: number;
-  title: string;
-  price: string;
-  image: string;
-}
+import { addProduct, CartProducts } from '../../store/cart/cartSlice';
 
 interface Props {
-  product: Product;
+  product: CartProducts;
 }
 
 const ProductPage: NextPage<Props> = ({ product }) => {
@@ -39,7 +32,7 @@ const ProductPage: NextPage<Props> = ({ product }) => {
           </div>
           <div className="flex flex-col pt-20 space-y-6">
             <h2 className="text-6xl text-slate-300">{product.title}</h2>
-            <h2 className="text-4xl text-slate-300">{product.price}</h2>
+            <h2 className="text-4xl text-slate-300">${product.price}</h2>
             <h2 className="text-4xl text-slate-300 ">Size:</h2>
             <div className="flex space-x-2">
               <button className="border-zinc-600 border-2 rounded-full text-white px-4 py-2 focus:border-blue-600">
@@ -58,7 +51,7 @@ const ProductPage: NextPage<Props> = ({ product }) => {
             <div>
               <button
                 className="bg-blue-800 text-white px-16 py-2 rounded-md text-xl"
-                onClick={() => dispatch(increment())}
+                onClick={() => dispatch(addProduct(product))}
               >
                 Add to Cart
               </button>

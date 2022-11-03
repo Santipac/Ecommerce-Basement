@@ -1,10 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import Remera from '../public/products/shirt.png';
-import Buzo from '../public/products/hoodie.png';
-import Gorra from '../public/products/cap.png';
 import { useDispatch } from 'react-redux';
-import { increment } from '../../store/cart/cartSlice';
 import { ProductsMock } from './mock';
 import Link from 'next/link';
 
@@ -26,7 +22,7 @@ export const ProductsSection = () => {
                 {prod.title}
               </h2>
               <h2 className="text-white  font-semibold text-2xl">
-                {prod.price}
+                $ {prod.price}
               </h2>
             </div>
           </div>
