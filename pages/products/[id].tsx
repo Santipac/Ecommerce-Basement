@@ -19,43 +19,31 @@ const ProductPage: NextPage<Props> = ({ product }) => {
         <title>Basement | Product</title>
       </Head>
       <Header />
-      <div className="flex justify-center items-center w-full h-[92vh] ">
-        <div className="w-[70%] h-[80%] bg-zinc-800 rounded-lg grid grid-cols-2">
-          <div className="flex justify-center">
+      <div className="flex justify-center items-center w-full h-[92vh] p-2">
+        <div className="w-full sm:w-[70%] min-h-min sm:min-h-[80%] bg-zinc-800 rounded-lg grid auto-rows-auto lg:grid-cols-2  p-4">
+          <div className="h-full w-full flex items-center justify-center ">
             <Image
               src={product.image}
-              alt="product"
-              width={400}
-              height={400}
-              className="object-cover"
+              className=" object-contain"
+              width={320}
+              alt="Product Image"
             />
           </div>
-          <div className="flex flex-col pt-20 space-y-6">
-            <h2 className="text-6xl text-slate-300">{product.title}</h2>
-            <h2 className="text-4xl text-slate-300">${product.price}</h2>
-            <h2 className="text-4xl text-slate-300 ">Size:</h2>
-            <div className="flex space-x-2">
-              <button className="border-zinc-600 border-2 rounded-full text-white px-4 py-2 focus:border-blue-600">
-                S
-              </button>
-              <button className="border-zinc-600 border-2 rounded-full text-white px-4 py-2 focus:border-blue-600">
-                M
-              </button>
-              <button className="border-zinc-600 border-2 rounded-full text-white px-4 py-2 focus:border-blue-600">
-                L
-              </button>
-              <button className="border-zinc-600 border-2 rounded-full text-white px-4 py-2 focus:border-blue-600">
-                XL
-              </button>
+          <div className="flex flex-col lg:block lg:mt-[7rem] space-y-4">
+            <div className="w-full flex items-center justify-between lg:flex-col lg:items-start py-4 lg:space-y-10">
+              <h3 className="text-zinc-400 text-3xl lg:text-5xl">
+                {product.title}
+              </h3>
+              <h3 className="text-zinc-400 text-3xl lg:text-5xl">
+                ${product.price}
+              </h3>
             </div>
-            <div>
-              <button
-                className="bg-blue-800 text-white px-16 py-2 rounded-md text-xl"
-                onClick={() => dispatch(addProduct(product))}
-              >
-                Add to Cart
-              </button>
-            </div>
+            <button
+              className="bg-blue-700 text-white font-semibold p-2.5 rounded-md"
+              onClick={() => dispatch(addProduct(product))}
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
