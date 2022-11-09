@@ -10,6 +10,9 @@ const nextConfig = {
     MESSAGING_SENDER_ID: process.env.MESSAGING_SENDER_ID,
     APP_ID: process.env.APP_ID,
   },
+  images: {
+    domains: ['lh3.googleusercontent.com'],
+  },
 };
 
 module.exports = nextConfig;

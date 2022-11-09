@@ -1,15 +1,19 @@
 import Image from 'next/image';
-import SecondaryLogos from '../../public/SecondaryLogos.svg';
-import Logo from '../../public/logo.svg';
-import { useSelector } from 'react-redux';
-
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
+import { FaShoppingCart } from 'react-icons/fa';
 import { RootState } from '../../store';
-
-import { useState } from 'react';
 import { CartModal } from './CartModal';
+import { useState } from 'react';
+import Logo from '../../public/logo.svg';
+import SecondaryLogos from '../../public/SecondaryLogos.svg';
+import { useUserStore } from '../../hooks/useUserStore';
+import { DropdownMenu } from './DropdownMenu';
+
 export const Header = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const { startLoginUser, status } = useUserStore();
 
   const handleCart = () => {
     setIsOpen(!isOpen);
@@ -29,12 +33,24 @@ export const Header = () => {
           alt="Logos falopas"
           className="hidden md:block"
         />
-        <button
-          className="text-white border-2 border-white rounded-full px-10 py-2 text-xl"
-          onClick={() => handleCart()}
-        >
-          {`CART  ( ${cartCount} ) `}
-        </button>
+        <div className="flex items-center space-x-2">
+          <button className="relative flex pr-2" onClick={() => handleCart()}>
+            <FaShoppingCart size="30px" color="white" className="flex-1 " />
+            <span className="absolute bottom-5 left-5 rounded-full bg-red-600 w-4 h-4 top right p-0 m-0 text-white font-normal text-sm  leading-tight text-center">
+              {cartCount}{' '}
+            </span>
+          </button>
+          {status === 'authenticated' ? (
+            <DropdownMenu />
+          ) : (
+            <button
+              className="font-semibold text-md px-6 py-1.5 border-white border rounded-full text-white"
+              onClick={() => startLoginUser()}
+            >
+              Sign In
+            </button>
+          )}
+        </div>
       </div>
       <CartModal isOpen={isOpen} handleCart={handleCart} />
     </header>
