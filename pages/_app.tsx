@@ -1,3 +1,4 @@
+import 'animate.css';
 import '../css/global.css';
 import type { AppProps } from 'next/app';
 import { store } from '../store';

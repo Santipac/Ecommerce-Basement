@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { FirebaseAuth } from '../firebase/config';
 import { RootState } from '../store';
+import { cleanCart } from '../store/cart/cartSlice';
 import { checkingUser, loginUser, logoutUser } from '../store/users/userSlice';
 
 export const useUserStore = () => {
@@ -36,6 +37,7 @@ export const useUserStore = () => {
       await signOut(FirebaseAuth);
 
       dispatch(logoutUser());
+      dispatch(cleanCart());
     } catch (error) {
       console.log(error);
     }

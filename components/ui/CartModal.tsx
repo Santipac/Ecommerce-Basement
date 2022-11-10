@@ -1,11 +1,12 @@
+import Link from 'next/link';
 import Image from 'next/image';
 import { FC, useEffect } from 'react';
-import YourCart from '../../public/YourCart.svg';
-import Checkout from '../../public/checkout.svg';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { SummaryProduct } from './SummaryProduct';
 import { saveCart } from '../../helpers';
+import Checkout from '../../public/checkout.svg';
+import YourCart from '../../public/YourCart.svg';
 interface Props {
   isOpen: boolean;
   handleCart: () => void;
@@ -22,7 +23,7 @@ export const CartModal: FC<Props> = ({ handleCart, isOpen }) => {
     <div
       className={
         isOpen
-          ? 'fixed top-0 right-0 h-screen  md:w-[45vw] w-full bg-black  z-10 grid grid-cols-12 grid-rows-12 border-zinc-700 border-2'
+          ? 'fixed top-0 right-0 h-screen  md:w-[45vw] w-full bg-black  z-10 grid grid-cols-12 grid-rows-12 border-zinc-700 border-2 '
           : 'hidden'
       }
     >
@@ -47,9 +48,9 @@ export const CartModal: FC<Props> = ({ handleCart, isOpen }) => {
           <h2 className="text-white text-3xl font-semibold px-2">${total}</h2>
         </div>
         <div className="w-full h-full flex items-start  justify-center   relative ">
-          <button>
+          <Link href="/checkout">
             <Image src={Checkout} alt="checkout button" fill className="px-3" />
-          </button>
+          </Link>
         </div>
       </div>
     </div>

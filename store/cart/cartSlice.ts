@@ -10,6 +10,7 @@ export interface CartProducts {
 }
 
 export interface CartState {
+  id?: string;
   products: CartProducts[];
   cartCounter: number;
   total: number;

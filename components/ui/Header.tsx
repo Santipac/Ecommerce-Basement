@@ -22,9 +22,9 @@ export const Header = () => {
   const cartCount = useSelector((state: RootState) => state.cart.cartCounter);
   return (
     <header className="h-[10vh] relative top-0 left-0 ">
-      <div className="py-6 px-8 flex justify-between items-center">
+      <div className="py-6 px-8 flex justify-between  md:items-center">
         <Link href="/">
-          <h2 className="text-white text-8xl font-medium md:hidden">b.</h2>
+          <h2 className="text-white text-6xl font-medium md:hidden ">b.</h2>
 
           <Image src={Logo} alt="Logo Store" className="hidden md:block" />
         </Link>
