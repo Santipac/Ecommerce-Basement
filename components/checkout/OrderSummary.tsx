@@ -1,15 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
-import { useCartStore } from '../../hooks';
 import { RootState } from '../../store';
-import { v4 as uuidv4 } from 'uuid';
 
-export const OrderSummary = () => {
-  const orderId = uuidv4();
+export const OrderSummary: FC = () => {
   const { products, total, cartCounter } = useSelector(
     (state: RootState) => state.cart
   );
-  const { startNewOrder } = useCartStore();
   return (
     <div className=" grid auto-rows-min md:mt-6">
       <div className="mt-4">
@@ -54,15 +50,6 @@ export const OrderSummary = () => {
           </h3>
         </div>
       </div>
-
-      <button
-        className="w-full bg-indigo-500 text-white font-medium py-2 text-center my-3 rounded-md hover:bg-indigo-600"
-        onClick={() =>
-          startNewOrder({ products, total, cartCounter, id: orderId })
-        }
-      >
-        Proceed to Payment
-      </button>
     </div>
   );
 };

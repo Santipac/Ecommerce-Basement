@@ -21,7 +21,7 @@ export const Header = () => {
 
   const cartCount = useSelector((state: RootState) => state.cart.cartCounter);
   return (
-    <header className="h-[10vh] relative top-0 left-0 ">
+    <header className="h-[10vh] relative inset-y-0 right-0 animate__fadeInTopRight ">
       <div className="py-6 px-8 flex justify-between  md:items-center">
         <Link href="/">
           <h2 className="text-white text-6xl font-medium md:hidden ">b.</h2>

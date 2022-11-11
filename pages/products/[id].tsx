@@ -19,7 +19,9 @@ const ProductPage: NextPage<Props> = ({ product }) => {
 
   useEffect(() => {
     status !== 'authenticated'
-      ? toast('Sign in before purchasing', { position: 'bottom-center' })
+      ? toast('👉 Sign in before purchasing 👈', {
+          position: 'top-center',
+        })
       : null;
   }, []);
 
@@ -51,7 +53,7 @@ const ProductPage: NextPage<Props> = ({ product }) => {
             </div>
             {status !== 'authenticated' ? (
               <button
-                className="cursor-not-allowed bg-indigo-800 text-gray-600 font-medium p-2.5 rounded-md hover:bg-indigo-900"
+                className="cursor-not-allowed bg-indigo-800 text-gray-600 font-medium p-2.5 rounded-md hover:bg-indigo-900 "
                 onClick={() => dispatch(addProduct(product))}
                 disabled
               >
