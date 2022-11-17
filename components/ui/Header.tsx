@@ -13,8 +13,7 @@ import { DropdownMenu } from './DropdownMenu';
 export const Header = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const { startLoginUser, status } = useUserStore();
-
+  const { startLoginUser, status, uid } = useUserStore();
   const handleCart = () => {
     setIsOpen(!isOpen);
   };

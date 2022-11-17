@@ -1,8 +1,18 @@
-import { doc, getDoc, setDoc } from 'firebase/firestore/lite';
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from 'firebase/firestore/lite';
 import { useSelector, useDispatch } from 'react-redux';
 import { FirebaseDB } from '../firebase/config';
+import { getOrdersFromFirestore } from '../helpers/getOrdersFromFirestore';
 import { RootState } from '../store';
 import { CartState } from '../store/cart/cartSlice';
+import { Order } from '../types/orders';
 
 export const useCartStore = () => {
   const dispatch = useDispatch();
@@ -29,6 +39,11 @@ export const useCartStore = () => {
       }
     }
   };
+  // const startGetOrders = async () => {
+  //   const orders = await getOrdersFromFirestore(uid!);
+  //   console.log(orders);
+  //   return orders;
+  // };
 
   return { startNewOrder };
 };

@@ -1,11 +1,11 @@
-import { Field, Form, Formik, ErrorMessage } from 'formik';
-import { FC, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { checkoutYup } from '../../helpers';
-import { useCartStore } from '../../hooks';
-import { RootState } from '../../store';
-import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from 'next/router';
+import { FC, useState } from 'react';
+import { Field, Form, Formik, ErrorMessage } from 'formik';
+import { v4 as uuidv4 } from 'uuid';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { useCartStore } from '../../hooks';
+import { checkoutYup } from '../../helpers';
 import { Spinner } from '../ui';
 interface MyFormikValues {
   address: string;
@@ -40,7 +40,7 @@ export const FormCheckout = () => {
         await startNewOrder({ products, total, cartCounter, id: orderId });
         setIsPaying(false);
         actions.resetForm();
-        router.push('/');
+        router.replace('/checkout/purchase');
       }}
     >
       <Form className=" flex flex-col mt-8 space-y-4 md:w-[85%] ">

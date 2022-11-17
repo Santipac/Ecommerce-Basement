@@ -6,10 +6,19 @@ import {
   Button,
 } from '@material-tailwind/react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useUserStore } from '../../hooks/useUserStore';
 
 export const DropdownMenu = () => {
-  const { startSignOutUser, photoURL, displayName } = useUserStore();
+  const router = useRouter();
+  const { startSignOutUser, photoURL, displayName, uid } = useUserStore();
+
+  const signOut = () => {
+    router.replace('/');
+    startSignOutUser();
+  };
+
   return (
     <Menu>
       <MenuHandler>
@@ -22,7 +31,7 @@ export const DropdownMenu = () => {
           }}
         >
           <Image
-            src={photoURL || ''}
+            src={photoURL ?? ''}
             height={40}
             width={40}
             className="rounded-full object-cover cursor-pointer"
@@ -31,9 +40,12 @@ export const DropdownMenu = () => {
         </Button>
       </MenuHandler>
       <MenuList>
-        <MenuItem>My Orders</MenuItem>
+        <MenuItem onClick={() => router.push('/')}>Home</MenuItem>
+        <MenuItem>
+          <Link href={`/orders/${uid}`}>My Orders</Link>
+        </MenuItem>
 
-        <MenuItem onClick={() => startSignOutUser()}>Sign Out</MenuItem>
+        <MenuItem onClick={() => signOut()}>Sign Out</MenuItem>
       </MenuList>
     </Menu>
   );

@@ -7,7 +7,7 @@ import { cleanCart } from '../store/cart/cartSlice';
 import { checkingUser, loginUser, logoutUser } from '../store/users/userSlice';
 
 export const useUserStore = () => {
-  const { status, displayName, photoURL } = useSelector(
+  const { status, displayName, photoURL, uid } = useSelector(
     (state: RootState) => state.user
   );
   const provider = new GoogleAuthProvider();
@@ -42,5 +42,12 @@ export const useUserStore = () => {
       console.log(error);
     }
   };
-  return { startLoginUser, startSignOutUser, status, displayName, photoURL };
+  return {
+    startLoginUser,
+    startSignOutUser,
+    status,
+    displayName,
+    photoURL,
+    uid,
+  };
 };
