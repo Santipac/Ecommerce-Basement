@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 
-export const OrderSummary: FC = () => {
+export const CheckoutSummary: FC = () => {
   const { products, total, cartCounter } = useSelector(
     (state: RootState) => state.cart
   );

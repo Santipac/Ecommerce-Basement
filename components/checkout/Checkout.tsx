@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { FormCheckout } from './FormCheckout';
 
-import { OrderSummary } from './OrderSummary';
+import { CheckoutSummary } from './CheckoutSummary';
 export const Checkout = () => {
   return (
     <div className="min-h-[80vh] p-4 ">
@@ -16,7 +16,7 @@ export const Checkout = () => {
       </Link>
       <div className="p-4 grid auto-rows-min md:grid-cols-2 md:grid-rows-1 gap-4">
         <FormCheckout />
-        <OrderSummary />
+        <CheckoutSummary />
       </div>
     </div>
   );

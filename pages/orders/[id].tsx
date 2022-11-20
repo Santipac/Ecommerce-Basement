@@ -3,12 +3,14 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import { OrderModal } from '../../components/orders';
 import { DropdownMenu } from '../../components/ui/DropdownMenu';
 import { getOrdersFromFirestore } from '../../helpers/getOrdersFromFirestore';
-import { useCartStore, useUserStore } from '../../hooks';
+import { useUserStore } from '../../hooks';
 
 const MyOrdersPage: NextPage = () => {
   const [orders, setOrders] = useState<DocumentData[]>([]);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const { uid } = useUserStore();
   const router = useRouter();
   useEffect(() => {
@@ -19,6 +21,8 @@ const MyOrdersPage: NextPage = () => {
     getOrders();
   }, []);
 
+  const handleModal = () => setIsOpen(!isOpen);
+
   return (
     <div className="min-h-screen w-full bg-black">
       <Head>
@@ -26,7 +30,7 @@ const MyOrdersPage: NextPage = () => {
         <meta name="description" content="My Orders section" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="p-4 h-full w-full">
+      <div className="p-4 h-full w-full ">
         <header className="w-full flex justify-between  items-center px-10">
           <h2 className="text-gray-400 font semi-bold py-4 text-2xl md:text-3xl">
             My Orders
@@ -46,7 +50,7 @@ const MyOrdersPage: NextPage = () => {
             </button>
           </div>
         ) : (
-          <div className="grid auto-rows-[min-h-[5rem]] justify-items-center gap-4">
+          <div className="grid auto-rows-[min-h-[5rem]] justify-items-center gap-4 ">
             {orders.map(order => (
               <div
                 className="bg-gray-900 w-full  rounded-md flex flex-col justify-between p-4 sm:w-[70%] lg:w-[50%] space-y-4"
@@ -54,7 +58,7 @@ const MyOrdersPage: NextPage = () => {
               >
                 <div className="flex w-full justify-between items-center">
                   <h4 className="text-gray-500 font-medium text-md sm:text-lg md:text-xl lg:text-2xl">
-                    OrderId:{' '}
+                    Order:
                     <span className="text-indigo-400 text-sm sm:text-md md:text-lg lg:text-xl">
                       {order.id.slice(0, 8)}
                     </span>
@@ -75,10 +79,18 @@ const MyOrdersPage: NextPage = () => {
                         .slice(0, 10)}
                     </span>
                   </h4>
-                  <button className="bg-indigo-600 text-white font-medium px-4 py-1.5 text-sm rounded-md">
+                  <button
+                    className="bg-indigo-600 text-white font-medium px-4 py-1.5 text-sm rounded-md"
+                    onClick={() => handleModal()}
+                  >
                     View Details
                   </button>
                 </div>
+                <OrderModal
+                  isOpen={isOpen}
+                  handleModal={handleModal}
+                  order={order}
+                />
               </div>
             ))}
           </div>
